@@ -12,7 +12,6 @@ def	print_data_in_file(file):
 	print ("\n<<<<<<<<<<<<<<<Columns>>>>>>>>>>>>>>>\n\n", file_columns)
 	print ("\n<<<<<<<<<<<<<<<Info>>>>>>>>>>>>>>>\n\n", file_info)
 
-
 #check the data in file
 def	check_data_in_file(file_name, data_file):
 	#check for null values in cells
@@ -45,7 +44,7 @@ def load_and_validate_files(train_file, test_file):
 		not check_data_in_file(test_file ,test):
 		return False
 
-	#check columns for inconsistent data
+	#check columns for inconsistent data between two files
 	if list(train.columns) != list(test.columns) + ['price']:
 		print ("Error: inconsistent data. Files contain different columns")
 		return False
