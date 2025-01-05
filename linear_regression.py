@@ -30,7 +30,6 @@ def linear_regression_model(train_file, test_file):
 	#store features and target in respective variables
 	X_train = train[get_correlation_and_select_features(train)[0]] 
 	Y_train = train[get_correlation_and_select_features(train)[1]]
-	price_mean = Y_train.mean().values[0]
 	X_train_split, X_validation_split, Y_train_split, Y_validation_split = \
 		train_test_split(X_train, Y_train)
 	#initialize linear regression model and fit it in the dataset
@@ -50,4 +49,4 @@ def linear_regression_model(train_file, test_file):
 def add_predicted_price_to_csv(file, predicted_price):
 	file_df = pd.read_csv(file)
 	file_df['predicted_price'] = predicted_price
-	file_df.to_csv('data/test_prediction.csv')
+	file_df.to_csv('data/test_prediction.csv', index=False)
