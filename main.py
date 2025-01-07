@@ -1,4 +1,4 @@
-from linear_regression import linear_regression_model, calculate_model_metrics, add_predicted_price_to_csv
+from linear_regression import linear_regression_model, add_predicted_price_to_csv
 
 def main():
 	train_file = 'data/train.csv'

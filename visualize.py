@@ -25,7 +25,7 @@ def calculate_model_metrics(Y_validation_split, Y_validation_pred, Y_train_split
 	scores_mean = scores.mean()
  
 	#1% of the mean price can be taken as a threshold
-	rmse_threshold = Y_train.mean().values[0] * 0.01
+	rmse_threshold = Y_train.mean().values[0] * 0.001
 	mse_threshold = rmse_threshold ** 2
 
 	print(f"{YELLOW}\nModel Performance Metrics:\n{RESET}")
