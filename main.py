@@ -1,4 +1,10 @@
-from linear_regression import linear_regression_model, add_predicted_price_to_csv
+import pandas as pd
+from linear_regression import linear_regression_model
+
+def add_predicted_price_to_csv(file, predicted_price):
+	file_df = pd.read_csv(file)
+	file_df['predicted_price'] = predicted_price
+	file_df.to_csv('data/test_prediction.csv', index=False)
 
 def main():
 	train_file = 'data/train.csv'

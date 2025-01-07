@@ -45,8 +45,3 @@ def linear_regression_model(train_file, test_file):
 	predicted_price = model.predict(X_test)
 	calculate_model_metrics(Y_validation_split, Y_validation_pred, Y_train_split, Y_train_pred, model, X_train, Y_train)
 	return predicted_price
-
-def add_predicted_price_to_csv(file, predicted_price):
-	file_df = pd.read_csv(file)
-	file_df['predicted_price'] = predicted_price
-	file_df.to_csv('data/test_prediction.csv', index=False)
