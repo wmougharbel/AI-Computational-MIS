@@ -24,7 +24,7 @@ def calculate_model_metrics(Y_validation_split, Y_validation_pred, Y_train_split
 	scores = cross_val_score(model, X_train, Y_train, cv=5, scoring='r2')
 	scores_mean = scores.mean()
  
-	#1% of the mean price can be taken as a threshold
+	#0.1% of the mean price can be taken as a threshold
 	rmse_threshold = Y_train.mean().values[0] * 0.001
 	mse_threshold = rmse_threshold ** 2
 
@@ -38,14 +38,14 @@ def calculate_model_metrics(Y_validation_split, Y_validation_pred, Y_train_split
 	print(f"{GREEN if train_rmse < rmse_threshold else RED}Training RMSE: {train_rmse:.3f} ({'Good' if train_rmse < rmse_threshold else 'High'}){RESET}")
 	print(f"{GREEN if train_r2 > 0.95 else (RED if train_r2 <= 0.80 else RESET)}Training R^2: {train_r2:.3f} ({'Excellent' if train_r2 > 0.95 else 'Acceptable' if train_r2 > 0.80 else 'Poor'}){RESET}")
 	# Validation metrics
-	print(f"{GREEN if test_mse < mse_threshold else RED}Training MSE: {train_mse:.3f} ({'Good' if test_mse < mse_threshold else 'Needs improvement'}){RESET}")
-	print(f"{GREEN if test_rmse < rmse_threshold else RED}Training RMSE: {train_rmse:.3f} ({'Good' if test_rmse < rmse_threshold else 'High'}){RESET}")
-	print(f"{GREEN if test_r2 > 0.95 else (RED if test_r2 <= 0.80 else RESET)}Training R^2: {train_r2:.3f} ({'Excellent' if test_r2 > 0.95 else 'Acceptable' if train_r2 > 0.80 else 'Poor'}){RESET}")
+	print(f"{GREEN if test_mse < mse_threshold else RED}Testing MSE: {train_mse:.3f} ({'Good' if test_mse < mse_threshold else 'Needs improvement'}){RESET}")
+	print(f"{GREEN if test_rmse < rmse_threshold else RED}Testing RMSE: {train_rmse:.3f} ({'Good' if test_rmse < rmse_threshold else 'High'}){RESET}")
+	print(f"{GREEN if test_r2 > 0.95 else (RED if test_r2 <= 0.80 else RESET)}Testing R^2: {train_r2:.3f} ({'Excellent' if test_r2 > 0.95 else 'Acceptable' if train_r2 > 0.80 else 'Poor'}){RESET}")
 
 	# Cross-validation
 	print(f"{YELLOW}\nCross-Validation Metrics:{RESET}")
 	print(f"Cross-Validation R^2 Scores: {scores}")
-	print(f"Mean R^2: {scores_mean:.3f} ({'Excellent' if scores_mean > 0.95 else 'Acceptable' if scores_mean > 0.80 else 'Poor'})")
+	print(f"Mean R^2: {scores_mean:.3f} ({'Excellent' if scores_mean > 0.95 else 'Acceptable' if scores_mean < 0.80 else 'Poor'})")
 
 	# Overfitting assessment
 	if abs(train_r2 - test_r2) > 0.1:

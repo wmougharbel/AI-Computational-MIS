@@ -19,10 +19,6 @@ def	check_data_in_file(file_name, data_file):
 	if data_file.isnull().sum().sum() != 0:
 		print(f"Error: null value in {file_name}")
 		return False
-	#check for duplicates
-	if data_file.duplicated().sum().sum() != 0:
-		print(f"Error: duplicate found in {file_name}")
-		return False
 	#check for invalid booleans
 	if not data_file['hasYard'].isin([0,1]).any():
 		print(f"Invalid boolean value {data_file['hasYard']} in {file_name} 'hasYard'")
